@@ -1,0 +1,19 @@
+---
+# tasks file for web
+- name: Install httpd
+  yum: name=httpd state=latest
+
+- name: Create web directory
+  file:
+   path: /var/www/website
+   state: directory
+   owner: root
+   group: apache
+   mode: '0755'
+
+- name: configure virtual host
+  template: src=web.conf dest=/etc/httpd/conf.d/web.conf
+
+- name: copy web index file
+  template: src=index.html dest=/var/www/website/index.html
+  notify: restart and enable httpd
