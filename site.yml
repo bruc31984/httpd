@@ -1,5 +1,5 @@
 ---
-- hosts: centos
-  become: yes
+- name: Install httpd
+  hosts: centos
   roles:
      - web
